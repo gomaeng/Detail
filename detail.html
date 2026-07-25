@@ -22,29 +22,32 @@
             max-width: 1180px;
             margin: 0 auto;
             overflow: hidden;
+            /* 비디오 세로 높이에 맞춰 컨테이너 비율 자동 확보 (비디오 비율에 따라 조절 가능) */
+            aspect-ratio: 16 / 10; 
         }
         .slide-track {
             display: flex;
             transition: transform 0.4s ease-in-out;
             width: 100%;
+            height: 100%;
         }
         .slide {
             min-width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        /* 해상도와 크기를 최적화하여 용량 체감 및 부하를 줄인 스타일 */
         .slide video {
             width: 100%;
-            max-width: 700px; 
-            height: auto;
+            max-width: 700px;
+            height: 100%;
+            max-height: 100%;
             display: block;
             margin: 0 auto;
             object-fit: contain;
-            pointer-events: none; /* 클릭 방지 */
+            pointer-events: none;
         }
-        /* 좌우 화살표 버튼 스타일 */
         .arrow {
             position: absolute;
             top: 50%;
@@ -65,7 +68,6 @@
         .prev { left: 10px; }
         .next { right: 10px; }
 
-        /* 하단 페이지 인디케이터 (점 표시) */
         .dots {
             text-align: center;
             position: absolute;
@@ -101,11 +103,9 @@
             <div class="slide"><video src="https://cdn.discordapp.com/attachments/1530554657557057668/1530562611874107572/07251.mp4?ex=6a660703&is=6a64b583&hm=82614b8253996d7498bb923c281656c45d1f6bd085d0f611c4d3169d56a12432&" autoplay loop muted playsinline></video></div>
         </div>
 
-        <!-- 좌우 화살표 버튼 -->
         <button class="arrow prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="arrow next" onclick="moveSlide(1)">&#10095;</button>
 
-        <!-- 하단 점 네비게이션 -->
         <div class="dots" id="dotsContainer"></div>
     </div>
 
@@ -148,6 +148,5 @@
             updateSlide();
         }
     </script>
-
 </body>
 </html>
